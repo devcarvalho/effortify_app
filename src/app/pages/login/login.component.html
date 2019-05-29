@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 mx-auto mt-5">
+      <mat-card>
+        <mat-card-content>
+          <form class="login-form" (submit)="login()">
+            <mat-card-title>Login</mat-card-title>
+            <mat-form-field class="full-width">
+              <input
+                matInput
+                name="email"
+                placeholder="Login"
+                type="email"
+                [(ngModel)]="email"
+              />
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+              <input
+                matInput
+                name="password"
+                placeholder="Senha"
+                type="password"
+                [(ngModel)]="password"
+              />
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">
+              Login
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
