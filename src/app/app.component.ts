@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { UserService } from './services/user.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'effortify';
+
+  constructor(private userService: UserService) {
+    this.userService.checkAuth();
+  }
 }

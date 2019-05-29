@@ -8,9 +8,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', canActivate: [AuthGuard], component: DashboardComponent }
-  // { path: '', redirectTo: '/login', pathMatch: 'full' }
   // { path: '**', component: PageNotFoundComponent }
 ];
 

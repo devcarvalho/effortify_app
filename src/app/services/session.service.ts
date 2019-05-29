@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,16 +8,19 @@ export class SessionService {
 
   constructor() {}
 
-  setSessionData(data: any) {
+  setSessionData(data: any): void {
     this.sessionData = {
       token: data.token,
       userId: data.user._id,
       userName: data.user.name,
       userLevel: data.user.level
     };
+
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('userId', data.user._id);
   }
 
-  clearSessionData() {
+  clearSessionData(): void {
     this.sessionData = {};
   }
 
