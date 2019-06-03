@@ -1,0 +1,22 @@
+<div class="sidebar">
+  <div class="overlay"></div>
+  <div class="logo">
+    <a>
+      Effortify
+    </a>
+  </div>
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      <li
+        *ngFor="let navItem of navItems"
+        [class.active]="navItem.isActive"
+        class="nav-item"
+      >
+        <a routerLink="{{ navItem.link }}">
+          <mat-icon>{{ navItem.icon }}</mat-icon>
+          <p>{{ navItem.label }}</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

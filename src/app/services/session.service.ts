@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 
+import { Observable, Subject } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
   private sessionData: any;
+  private sessionStream = new Subject<any>();
 
   constructor() {}
 
@@ -16,6 +19,8 @@ export class SessionService {
       userLevel: data.user.level
     };
 
+    this.sessionStream.next(this.sessionData);
+
     localStorage.setItem('token', data.token);
     localStorage.setItem('userId', data.user._id);
   }
@@ -26,5 +31,15 @@ export class SessionService {
 
   getSessionData(): any {
     return this.sessionData;
+  }
+
+  getSessionStream(): Observable<any> {
+    return this.sessionStream.asObservable();
+  }
+
+  logout() {
+    this.clearSessionData();
+    this.sessionStream.next();
+    localStorage.clear();
   }
 }

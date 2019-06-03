@@ -9,18 +9,32 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './pages/login/login.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatMenuModule } from '@angular/material/menu';
 import {
   MatGridListModule,
   MatButtonModule,
   MatCardModule,
   MatInputModule
 } from '@angular/material';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SwitchCardComponent } from './components/switch-card/switch-card.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    DashboardComponent,
+    SidebarComponent,
+    SwitchCardComponent,
+    HeaderComponent
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -32,7 +46,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     MatButtonModule,
     MatInputModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatIconModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
