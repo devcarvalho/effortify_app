@@ -61,6 +61,33 @@
       text-align: right;
       margin: 0;
       font-weight: 300;
+      font-size: 1.45rem;
+      margin-top: 2px !important;
+
+      &.txt-8 {
+        font-size: 1.15rem;
+        margin-top: 6px !important;
+      }
+
+      &.txt-7 {
+        font-size: 1.15rem;
+        margin-top: 6px !important;
+      }
+
+      &.txt-6 {
+        font-size: 1.15rem;
+        margin-top: 6px !important;
+      }
+
+      &.txt-5 {
+        font-size: 1.15rem;
+        margin-top: 6px !important;
+      }
+
+      &.txt-4 {
+        font-size: 1.25rem;
+        margin-top: 3px !important;
+      }
 
       small {
         font-size: 40%;

@@ -9,7 +9,7 @@
     <ul class="nav">
       <li
         *ngFor="let navItem of navItems"
-        [class.active]="navItem.isActive"
+        [routerLinkActive]="['active']"
         class="nav-item"
       >
         <a routerLink="{{ navItem.link }}">

@@ -1,15 +1,28 @@
 <div class="card card-stats">
   <div class="card-header card-header-icon">
-    <div class="card-icon orange">
-      <mat-icon>event_available</mat-icon>
+    <div class="card-icon {{ color }}">
+      <mat-icon>{{ period.icon }}</mat-icon>
     </div>
     <p class="card-category mb-0">
-      Hoje
+      {{ period.label }}
     </p>
-    <h3 class="card-title">8:25 <small>HORAS</small></h3>
+    <ng-container [ngSwitch]="type">
+      <h3 *ngSwitchCase="'hours'" class="card-title">
+        {{ hours }} <small>HORAS</small>
+      </h3>
+      <h3
+        *ngSwitchCase="'money'"
+        class="card-title {{ 'txt-' + value.toString().length }}"
+      >
+        {{ value | currency: 'BRL' }}
+      </h3>
+      <h3 *ngSwitchDefault class="card-title">
+        {{ value }}
+      </h3>
+    </ng-container>
   </div>
   <div class="card-footer">
-    <div class="stats">
+    <div class="stats" (click)="switch()">
       <mat-icon>loop</mat-icon>
       <a>Trocar</a>
     </div>

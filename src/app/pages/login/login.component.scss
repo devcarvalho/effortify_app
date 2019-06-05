@@ -1,13 +1,134 @@
-.mat-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.login-form {
+.wrapper {
+  background: #eee;
   width: 100%;
-}
+  height: 100%;
+  .container {
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif !important;
 
-.full-width {
-  width: 100%;
+    .card {
+      border: none !important;
+      position: relative;
+      background: #ffffff;
+      border-radius: 5px;
+      padding: 60px 0 40px 0;
+      box-sizing: border-box;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      transition: 0.3s ease;
+
+      &.alt {
+        position: absolute;
+        top: 40px;
+        right: -70px;
+        z-index: 10;
+        width: 140px;
+        height: 140px;
+        background: none;
+        border-radius: 100%;
+        box-shadow: none;
+        padding: 0;
+        transition: 0.3s ease;
+      }
+
+      &:first-child {
+        background: #fafafa;
+        height: 10px;
+        border-radius: 5px 5px 0 0;
+        margin: 0 10px;
+        padding: 0;
+      }
+
+      .title {
+        position: relative;
+        z-index: 1;
+        border-left: 5px solid #673ab7;
+        margin: 0 0 35px;
+        padding: 10px 0 10px 50px;
+        color: #673ab7;
+        font-size: 32px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .input-container {
+        // left: 100px;
+        // opacity: 0;
+        font-size: 24px;
+        font-weight: 300;
+        padding-right: 3.5rem;
+        padding-left: 3.5rem;
+      }
+
+      .button-container {
+        margin: 20px 60px;
+        text-align: center;
+
+        button {
+          outline: 0;
+          cursor: pointer;
+          position: relative;
+          display: inline-block;
+          background: 0;
+          width: 240px;
+          border: 2px solid #e3e3e3;
+          padding: 20px 0;
+          font-size: 24px;
+          font-weight: 600;
+          line-height: 1;
+          text-transform: uppercase;
+          overflow: hidden;
+          transition: 0.3s ease;
+
+          &:hover,
+          &:focus,
+          &:active {
+            border-color: #673ab7;
+
+            span {
+              position: relative;
+              z-index: 1;
+              color: #673ab7;
+              transition: 0.3s ease;
+            }
+          }
+
+          &:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: block;
+            background: #673ab7;
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            margin: -15px 0 0 -15px;
+            opacity: 0;
+            transition: 0.3s ease;
+          }
+
+          span {
+            position: relative;
+            z-index: 1;
+            color: #ddd;
+            transition: 0.3s ease;
+          }
+        }
+      }
+    }
+
+    .mat-card {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-form {
+      width: 100%;
+    }
+
+    .full-width {
+      width: 100%;
+    }
+  }
 }

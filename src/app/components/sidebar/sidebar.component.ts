@@ -14,50 +14,42 @@ export class SidebarComponent implements OnInit {
     {
       label: 'Dashboard',
       icon: 'dashboard',
-      link: 'dashboard',
-      isActive: true
+      link: 'dashboard'
     },
     {
       label: 'Clientes',
       icon: 'business',
-      link: 'clients',
-      isActive: false
+      link: 'clientes'
     },
     {
       label: 'Usuários',
       icon: 'person',
-      link: 'users',
-      isActive: false
+      link: 'usuarios'
     },
     {
       label: 'Apontamentos',
       icon: 'access_time',
-      link: 'notes',
-      isActive: false
+      link: 'apontamentos'
     },
     {
       label: 'Projetos',
       icon: 'work',
-      link: 'projects',
-      isActive: false
+      link: 'projetos'
     },
     {
       label: 'Sprints',
       icon: 'settings_backup_restore',
-      link: 'sprints',
-      isActive: false
+      link: 'sprints'
     },
     {
       label: 'Estórias',
       icon: 'collections_bookmark',
-      link: 'stories',
-      isActive: false
+      link: 'estorias'
     },
     {
       label: 'Atividades',
       icon: 'library_books',
-      link: 'tasks',
-      isActive: false
+      link: 'atividades'
     }
   ];
 

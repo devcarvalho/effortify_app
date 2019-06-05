@@ -22,3 +22,8 @@ button {
   width: calc(100% - 260px);
   transition: 0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1);
 }
+
+.px-container {
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}

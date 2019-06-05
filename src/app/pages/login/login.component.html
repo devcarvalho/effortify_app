@@ -1,35 +1,40 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-5 mx-auto mt-5">
-      <mat-card>
-        <mat-card-content>
-          <form class="login-form" (submit)="login()">
-            <mat-card-title>Login</mat-card-title>
-            <mat-form-field class="full-width">
-              <input
-                matInput
-                name="email"
-                placeholder="Login"
-                type="email"
-                [(ngModel)]="email"
-              />
-            </mat-form-field>
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 mx-auto mt-5">
+        <div class="card"></div>
+        <div class="card">
+          <mat-card-content>
+            <form class="login-form" (submit)="login()">
+              <h1 class="title">Login</h1>
+              <mat-form-field class="full-width input-container">
+                <input
+                  matInput
+                  name="email"
+                  placeholder="Login"
+                  type="email"
+                  [(ngModel)]="email"
+                />
+              </mat-form-field>
 
-            <mat-form-field class="full-width">
-              <input
-                matInput
-                name="password"
-                placeholder="Senha"
-                type="password"
-                [(ngModel)]="password"
-              />
-            </mat-form-field>
-            <button mat-raised-button color="primary" type="submit">
-              Login
-            </button>
-          </form>
-        </mat-card-content>
-      </mat-card>
+              <mat-form-field class="full-width input-container">
+                <input
+                  matInput
+                  name="password"
+                  placeholder="Senha"
+                  type="password"
+                  [(ngModel)]="password"
+                />
+              </mat-form-field>
+              <div class="button-container">
+                <button type="submit">
+                  <span>ENTRAR</span>
+                </button>
+              </div>
+            </form>
+          </mat-card-content>
+        </div>
+      </div>
     </div>
   </div>
 </div>

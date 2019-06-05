@@ -1,0 +1,85 @@
+.card {
+  border: 0;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  border-radius: 6px;
+  color: #333;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  font-size: 0.875rem;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+
+  .card-header {
+    position: relative;
+    margin: 0 15px;
+    z-index: 3 !important;
+    color: #fff;
+    border-bottom: none;
+    border-radius: 3px;
+    margin-top: -20px;
+    padding: 15px;
+    background: linear-gradient(60deg, #ab47bc, #8e24aa);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14),
+      0 7px 10px -5px rgba(156, 39, 176, 0.4);
+
+    .card-title {
+      margin-bottom: 3px;
+      color: #fff;
+      margin-top: 0;
+      text-decoration: none;
+      font-size: 1.125rem;
+      font-weight: 300;
+      line-height: 1.4em;
+      font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    }
+
+    .card-category {
+      color: hsla(0, 0%, 100%, 0.8);
+      margin: 0;
+    }
+  }
+
+  .card-body {
+    padding: 0.9375rem 20px;
+    position: relative;
+    flex: 1 1 auto;
+
+    .input-container {
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    .table-responsive {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+
+      table {
+        width: 100%;
+
+        .mat-header-cell {
+          font-family: 'Roboto', Helvetica, Arial, sans-serif;
+          color: #9c27b0 !important;
+          font-size: 1.063rem;
+          font-weight: 300;
+        }
+
+        .mat-cell {
+          color: #333;
+          font-size: 0.875rem;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+}
+
+mat-form-field {
+  margin-right: 12px;
+}
