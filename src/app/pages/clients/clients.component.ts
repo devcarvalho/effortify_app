@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ClientsService } from '../../services/clients.service';
+import { ProjectsService } from '../../services/projects.service';
 
 @Component({
   selector: 'app-clients',
@@ -6,27 +10,48 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./clients.component.scss']
 })
 export class ClientsComponent implements OnInit {
-  tableColumns = ['position', 'name', 'weight', 'symbol'];
-  tableColumnTitle = {
-    position: 'Posição',
-    name: 'Nome',
-    weight: 'Peso',
-    symbol: 'Símbolo'
+  tableOpts = {
+    title: 'Clientes',
+    subtitle: 'Listagem de todos os clientes cadastrados no sistema.'
   };
-  tableData = [
-    { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-    { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-    { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-    { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-    { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-    { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-    { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-    { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-    { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-    { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' }
-  ];
+  tableColumns = ['name', 'cnpj', 'email', 'phone_number', 'projects', 'view'];
+  tableColumnTitle = {
+    name: 'Nome',
+    cnpj: 'CNPJ',
+    email: 'Email',
+    phone_number: 'Telefone',
+    projects: 'Projetos',
+    view: 'Visualizar'
+  };
+  tableData = [];
+  showTable = false;
 
-  constructor() {}
+  constructor(
+    private clientsService: ClientsService,
+    private projectsService: ProjectsService,
+    private router: Router
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.clientsService.getClients().subscribe((clients: any) => {
+      clients.map((client: any) => {
+        this.showTable = false;
+        this.projectsService
+          .getProjectsByClient(client._id)
+          .subscribe((projects: any) => {
+            client.projects = projects.length;
+            this.tableData.push(client);
+            this.showTable = true;
+          });
+      });
+    });
+  }
+
+  newClient() {
+    this.router.navigate(['clientes/novo']);
+  }
+
+  viewClient(clientId: string) {
+    this.router.navigate([`clientes/${clientId}`]);
+  }
 }

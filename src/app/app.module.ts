@@ -34,6 +34,9 @@ import { ClientsComponent } from './pages/clients/clients.component';
 import { TableComponent } from './components/table/table.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { UpdateClientComponent } from './pages/clients/update-client/update-client.component';
+import { NewClientComponent } from './pages/clients/new-client/new-client.component';
+import { PurpleCardComponent } from './components/purple-card/purple-card.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { MatSortModule } from '@angular/material/sort';
     SwitchCardComponent,
     HeaderComponent,
     ClientsComponent,
-    TableComponent
+    TableComponent,
+    UpdateClientComponent,
+    NewClientComponent,
+    PurpleCardComponent
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,10 @@ import { AuthGuard } from './guards/auth.guard';
 
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+
 import { ClientsComponent } from './pages/clients/clients.component';
+import { NewClientComponent } from './pages/clients/new-client/new-client.component';
+import { UpdateClientComponent } from './pages/clients/update-client/update-client.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -23,6 +26,16 @@ const routes: Routes = [
     path: 'clientes',
     canActivate: [AuthGuard],
     component: ClientsComponent
+  },
+  {
+    path: 'clientes/novo',
+    canActivate: [AuthGuard],
+    component: NewClientComponent
+  },
+  {
+    path: 'clientes/:id',
+    canActivate: [AuthGuard],
+    component: UpdateClientComponent
   }
   // { path: '**', component: PageNotFoundComponent }
 ];
