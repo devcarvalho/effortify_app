@@ -34,16 +34,22 @@ export class ClientsComponent implements OnInit {
 
   ngOnInit() {
     this.clientsService.getClients().subscribe((clients: any) => {
-      clients.map((client: any) => {
-        this.showTable = false;
-        this.projectsService
-          .getProjectsByClient(client._id)
-          .subscribe((projects: any) => {
-            client.projects = projects.length;
-            this.tableData.push(client);
-            this.showTable = true;
-          });
-      });
+      if (clients.length) {
+        clients.map((client: any) => {
+          this.showTable = false;
+          this.projectsService
+            .getProjectsByClient(client._id)
+            .subscribe((projects: any) => {
+              client.projects = projects.length;
+              this.tableData.push(client);
+              if (this.tableData.length === clients.length) {
+                this.showTable = true;
+              }
+            });
+        });
+      } else {
+        this.showTable = true;
+      }
     });
   }
 

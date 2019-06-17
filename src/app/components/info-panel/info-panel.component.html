@@ -1,0 +1,42 @@
+<div class="card card-profile">
+  <div
+    class="card-avatar"
+    (mouseenter)="newImgShow = true"
+    (mouseleave)="newImgShow = false"
+  >
+    <img
+      [class.partial]="!displayImg"
+      src="{{ displayImg ? displayImg : defaultImg }}"
+    />
+    <a [hidden]="!newImgShow" class="new-img-overlay" (click)="file.click()">
+      <mat-icon>add_a_photo</mat-icon>
+      <input #file type="file" (change)="fileChangeEvent($event)" />
+    </a>
+  </div>
+  <div class="card-body">
+    <ng-content></ng-content>
+  </div>
+</div>
+
+<div class="cropper-container" *ngIf="showCropper">
+  <div class="overlay"></div>
+  <image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="1 / 1"
+    [resizeToWidth]="130"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+  ></image-cropper>
+  <button
+    mat-raised-button
+    class="btn btn-default btn-round"
+    type="button"
+    (click)="newImage.emit(''); clearInput()"
+  >
+    Cancelar
+  </button>
+  <button mat-raised-button class="btn btn-info" (click)="clearInput()">
+    Pronto
+  </button>
+</div>

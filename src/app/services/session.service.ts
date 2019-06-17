@@ -1,15 +1,43 @@
 import { Injectable } from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
+const helper = new JwtHelperService();
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
-  private sessionData: any;
+  public sessionData: any;
   private sessionStream = new Subject<any>();
 
   constructor() {}
+
+  public isAuthenticated(): boolean {
+    const token = localStorage.getItem('token');
+
+    try {
+      const user = helper.decodeToken(token).user;
+
+      this.sessionData = {
+        token,
+        userId: user.id,
+        userName: user.name,
+        userLevel: user.level
+      };
+
+      this.sessionStream.next(this.sessionData);
+
+      return (
+        typeof user.level === 'number' &&
+        typeof user.name === 'string' &&
+        typeof user.id === 'string'
+      );
+    } catch (e) {
+      return false;
+    }
+  }
 
   setSessionData(data: any): void {
     this.sessionData = {
@@ -39,7 +67,7 @@ export class SessionService {
 
   logout() {
     this.clearSessionData();
-    this.sessionStream.next();
+    this.sessionStream.next({});
     localStorage.clear();
   }
 }

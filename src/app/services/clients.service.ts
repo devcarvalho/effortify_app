@@ -25,4 +25,27 @@ export class ClientsService {
   getClients() {
     return this.http.get(`${this.url}/clients`, this.httpOptions);
   }
+
+  getClient(clientId: string) {
+    return this.http.get(`${this.url}/clients/${clientId}`, this.httpOptions);
+  }
+
+  addClient(client: object) {
+    return this.http.post(`${this.url}/clients`, client, this.httpOptions);
+  }
+
+  updateClient(client: object, clientId: string) {
+    return this.http.put(
+      `${this.url}/clients/${clientId}`,
+      client,
+      this.httpOptions
+    );
+  }
+
+  removeClient(clientId: string) {
+    return this.http.delete(
+      `${this.url}/clients/${clientId}`,
+      this.httpOptions
+    );
+  }
 }

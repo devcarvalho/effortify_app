@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 
@@ -14,6 +14,10 @@ import { LoginComponent } from './pages/login/login.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { NgxMaskModule } from 'ngx-mask';
+
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -37,6 +41,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { UpdateClientComponent } from './pages/clients/update-client/update-client.component';
 import { NewClientComponent } from './pages/clients/new-client/new-client.component';
 import { PurpleCardComponent } from './components/purple-card/purple-card.component';
+import { InfoPanelComponent } from './components/info-panel/info-panel.component';
 
 @NgModule({
   declarations: [
@@ -50,14 +55,17 @@ import { PurpleCardComponent } from './components/purple-card/purple-card.compon
     TableComponent,
     UpdateClientComponent,
     NewClientComponent,
-    PurpleCardComponent
+    PurpleCardComponent,
+    InfoPanelComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    ImageCropperModule,
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
@@ -68,7 +76,9 @@ import { PurpleCardComponent } from './components/purple-card/purple-card.compon
     MatMenuModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatProgressBarModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]

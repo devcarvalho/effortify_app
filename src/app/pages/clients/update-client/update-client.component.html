@@ -1,3 +1,127 @@
-<p>
-  update-client works!
-</p>
+<div class="clients outlet-wrapper">
+  <app-header title="Visualizar/Editar Cliente"></app-header>
+  <div class="container-fluid px-container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="spinner-wrapper">
+          <mat-progress-bar *ngIf="loading" mode="indeterminate">
+          </mat-progress-bar>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <app-purple-card
+          title="Visualizar/Editar Cliente"
+          subtitle="Preencha o formulário abaixo para editar o cliente.
+          Campos com (*) são obrigatórios."
+        >
+          <form (submit)="updateClient()">
+            <div class="form-row mb-3 mt-2">
+              <div class="col-md-6">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Razão Social"
+                    name="name"
+                    [formControl]="name"
+                    type="text"
+                    required
+                  />
+                  <mat-error *ngIf="name.invalid">{{
+                    getErrorMessage('name')
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 pl-4">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="CNPJ"
+                    name="cnpj"
+                    [formControl]="cnpj"
+                    [dropSpecialCharacters]="false"
+                    mask="00.000.000/0000-00"
+                    type="text"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-6">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Email"
+                    name="email"
+                    [formControl]="email"
+                    type="email"
+                  />
+                  <mat-error *ngIf="email.invalid">{{
+                    getErrorMessage('email')
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 pl-4">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Telefone"
+                    name="phone_number"
+                    [formControl]="phoneNumber"
+                    [dropSpecialCharacters]="false"
+                    mask="(00)0000-0000"
+                    type="text"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row justify-content-end pr-3 mt-3">
+              <button
+                mat-raised-button
+                class="btn btn-default"
+                routerLink="/clientes"
+                type="button"
+              >
+                Cancelar
+              </button>
+              <button mat-raised-button class="btn btn-primary" type="submit">
+                Salvar Alterações
+              </button>
+            </div>
+          </form>
+        </app-purple-card>
+      </div>
+      <div class="col-md-4">
+        <app-info-panel
+          [displayImg]="avatar.value ? avatar.value : ''"
+          (newImage)="avatar.setValue($event)"
+        >
+          <h4 *ngIf="name.value" class="card-title mt-2">
+            {{ name.value }}
+          </h4>
+          <h6 *ngIf="cnpj.value" class="card-category text-gray">
+            {{ cnpj.value }}
+          </h6>
+          <h6 *ngIf="phoneNumber.value" class="card-category text-gray">
+            {{ phoneNumber.value }}
+          </h6>
+          <h6 *ngIf="email.value" class="card-category text-gray">
+            {{ email.value }}
+          </h6>
+          <h6 *ngIf="clientProjects.length" class="card-category text-gray">
+            {{ clientProjects.length }} PROJETOS
+          </h6>
+          <button
+            *ngIf="clientProjects.length === 0"
+            mat-raised-button
+            class="btn btn-danger mt-4"
+            (click)="removeClient()"
+          >
+            Remover Cliente
+          </button>
+        </app-info-panel>
+      </div>
+    </div>
+  </div>
+</div>
