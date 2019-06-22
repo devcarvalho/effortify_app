@@ -11,6 +11,10 @@ import { ClientsComponent } from './pages/clients/clients.component';
 import { NewClientComponent } from './pages/clients/new-client/new-client.component';
 import { UpdateClientComponent } from './pages/clients/update-client/update-client.component';
 
+import { UsersComponent } from './pages/users/users.component';
+import { NewUserComponent } from './pages/users/new-user/new-user.component';
+import { UpdateUserComponent } from './pages/users/update-user/update-user.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {
@@ -36,6 +40,21 @@ const routes: Routes = [
     path: 'clientes/:id',
     canActivate: [AuthGuard],
     component: UpdateClientComponent
+  },
+  {
+    path: 'usuarios',
+    canActivate: [AuthGuard],
+    component: UsersComponent
+  },
+  {
+    path: 'usuarios/novo',
+    canActivate: [AuthGuard],
+    component: NewUserComponent
+  },
+  {
+    path: 'usuarios/:id',
+    canActivate: [AuthGuard],
+    component: UpdateUserComponent
   }
   // { path: '**', component: PageNotFoundComponent }
 ];

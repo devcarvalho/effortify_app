@@ -13,13 +13,41 @@ import { SessionService } from '../services/session.service';
 })
 export class UserService {
   url: string;
+  token: string;
+  httpOptions: any;
 
   constructor(
     private http: HttpClient,
     private sessionService: SessionService,
     private router: Router
   ) {
+    this.token = localStorage.getItem('token');
     this.url = environment.apiUrl;
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: this.token
+      })
+    };
+  }
+
+  getUsers() {
+    return this.http.get(`${this.url}/users`, this.httpOptions);
+  }
+
+  getUser(userId: string) {
+    return this.http.get(`${this.url}/users/${userId}`, this.httpOptions);
+  }
+
+  addUser(user: object) {
+    return this.http.post(`${this.url}/users`, user, this.httpOptions);
+  }
+
+  updateUser(user: object, userId: string) {
+    return this.http.put(`${this.url}/users/${userId}`, user, this.httpOptions);
+  }
+
+  removeUser(userId: string) {
+    return this.http.delete(`${this.url}/users/${userId}`, this.httpOptions);
   }
 
   login(email: string, password: string): Observable<any> {

@@ -63,7 +63,7 @@ export class NewClientComponent implements OnInit {
       err => {
         this.loading = false;
         swalWithBootstrapButtons.fire(
-          'Ops',
+          'Ops...',
           'Algo deu errado, por favor tente novamente.',
           'error'
         );

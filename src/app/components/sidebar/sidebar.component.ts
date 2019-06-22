@@ -17,19 +17,14 @@ export class SidebarComponent implements OnInit {
       link: 'dashboard'
     },
     {
-      label: 'Clientes',
-      icon: 'business',
-      link: 'clientes'
-    },
-    {
       label: 'Usuários',
       icon: 'person',
       link: 'usuarios'
     },
     {
-      label: 'Apontamentos',
-      icon: 'access_time',
-      link: 'apontamentos'
+      label: 'Clientes',
+      icon: 'business',
+      link: 'clientes'
     },
     {
       label: 'Projetos',
@@ -50,6 +45,11 @@ export class SidebarComponent implements OnInit {
       label: 'Atividades',
       icon: 'library_books',
       link: 'atividades'
+    },
+    {
+      label: 'Apontamentos',
+      icon: 'access_time',
+      link: 'apontamentos'
     }
   ];
 
@@ -57,7 +57,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     switch (this.userData.userLevel) {
-      case 2:
+      case 0:
         this.navItems = this.admNavItems;
         break;
       default:

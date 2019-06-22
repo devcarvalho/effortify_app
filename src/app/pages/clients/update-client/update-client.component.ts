@@ -167,7 +167,7 @@ export class UpdateClientComponent implements OnInit {
 
   showErrAlert() {
     swalWithBootstrapButtons.fire(
-      'Ops',
+      'Ops...',
       'Algo deu errado, por favor tente novamente.',
       'error'
     );

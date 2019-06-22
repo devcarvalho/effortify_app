@@ -1,30 +1,46 @@
 <div class="wrapper">
   <div class="container">
     <div class="row">
+      <div class="col-md-12">
+        <div class="spinner-wrapper">
+          <mat-progress-bar *ngIf="loading" mode="indeterminate">
+          </mat-progress-bar>
+        </div>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-5 mx-auto mt-5">
         <div class="card"></div>
         <div class="card">
           <mat-card-content>
             <form class="login-form" (submit)="login()">
               <h1 class="title">Login</h1>
-              <mat-form-field class="full-width input-container">
+              <mat-form-field class="full-width input-container mb-3">
                 <input
                   matInput
                   name="email"
-                  placeholder="Login"
+                  placeholder="Email"
                   type="email"
-                  [(ngModel)]="email"
+                  [formControl]="email"
+                  required
                 />
+                <mat-error *ngIf="email.invalid">{{
+                  getErrorMessage('email')
+                }}</mat-error>
               </mat-form-field>
 
-              <mat-form-field class="full-width input-container">
+              <mat-form-field class="full-width input-container mb-3">
                 <input
                   matInput
                   name="password"
                   placeholder="Senha"
                   type="password"
-                  [(ngModel)]="password"
+                  [formControl]="password"
+                  required
                 />
+                <mat-error *ngIf="password.invalid">{{
+                  getErrorMessage('password')
+                }}</mat-error>
               </mat-form-field>
               <div class="button-container">
                 <button type="submit">
