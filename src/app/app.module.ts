@@ -45,6 +45,9 @@ import { InfoPanelComponent } from './components/info-panel/info-panel.component
 import { UsersComponent } from './pages/users/users.component';
 import { NewUserComponent } from './pages/users/new-user/new-user.component';
 import { UpdateUserComponent } from './pages/users/update-user/update-user.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { NewProjectComponent } from './pages/projects/new-project/new-project.component';
+import { UpdateProjectComponent } from './pages/projects/update-project/update-project.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,10 @@ import { UpdateUserComponent } from './pages/users/update-user/update-user.compo
     InfoPanelComponent,
     UsersComponent,
     NewUserComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    ProjectsComponent,
+    NewProjectComponent,
+    UpdateProjectComponent
   ],
   imports: [
     BrowserModule,

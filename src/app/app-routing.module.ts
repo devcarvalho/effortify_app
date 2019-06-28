@@ -7,13 +7,17 @@ import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
+import { UsersComponent } from './pages/users/users.component';
+import { NewUserComponent } from './pages/users/new-user/new-user.component';
+import { UpdateUserComponent } from './pages/users/update-user/update-user.component';
+
 import { ClientsComponent } from './pages/clients/clients.component';
 import { NewClientComponent } from './pages/clients/new-client/new-client.component';
 import { UpdateClientComponent } from './pages/clients/update-client/update-client.component';
 
-import { UsersComponent } from './pages/users/users.component';
-import { NewUserComponent } from './pages/users/new-user/new-user.component';
-import { UpdateUserComponent } from './pages/users/update-user/update-user.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { NewProjectComponent } from './pages/projects/new-project/new-project.component';
+import { UpdateProjectComponent } from './pages/projects/update-project/update-project.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -25,6 +29,21 @@ const routes: Routes = [
     path: 'dashboard',
     canActivate: [AuthGuard],
     component: DashboardComponent
+  },
+  {
+    path: 'usuarios',
+    canActivate: [AuthGuard],
+    component: UsersComponent
+  },
+  {
+    path: 'usuarios/novo',
+    canActivate: [AuthGuard],
+    component: NewUserComponent
+  },
+  {
+    path: 'usuarios/:id',
+    canActivate: [AuthGuard],
+    component: UpdateUserComponent
   },
   {
     path: 'clientes',
@@ -42,19 +61,19 @@ const routes: Routes = [
     component: UpdateClientComponent
   },
   {
-    path: 'usuarios',
+    path: 'projetos',
     canActivate: [AuthGuard],
-    component: UsersComponent
+    component: ProjectsComponent
   },
   {
-    path: 'usuarios/novo',
+    path: 'projetos/novo',
     canActivate: [AuthGuard],
-    component: NewUserComponent
+    component: NewProjectComponent
   },
   {
-    path: 'usuarios/:id',
+    path: 'projetos/:id',
     canActivate: [AuthGuard],
-    component: UpdateUserComponent
+    component: UpdateProjectComponent
   }
   // { path: '**', component: PageNotFoundComponent }
 ];

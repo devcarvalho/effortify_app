@@ -26,9 +26,32 @@ export class ProjectsService {
     return this.http.get(`${this.url}/projects`, this.httpOptions);
   }
 
+  getProject(project: string) {
+    return this.http.get(`${this.url}/projects/${project}`, this.httpOptions);
+  }
+
   getProjectsByClient(client: string) {
     return this.http.get(
       `${this.url}/projects/client/${client}`,
+      this.httpOptions
+    );
+  }
+
+  addProject(project: object) {
+    return this.http.post(`${this.url}/projects`, project, this.httpOptions);
+  }
+
+  updateProject(project: object, projectId: string) {
+    return this.http.put(
+      `${this.url}/projects/${projectId}`,
+      project,
+      this.httpOptions
+    );
+  }
+
+  removeProject(projectId: string) {
+    return this.http.delete(
+      `${this.url}/projects/${projectId}`,
       this.httpOptions
     );
   }
