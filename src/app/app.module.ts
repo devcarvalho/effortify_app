@@ -18,6 +18,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgxMaskModule } from 'ngx-mask';
 
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -27,7 +28,8 @@ import {
   MatGridListModule,
   MatButtonModule,
   MatCardModule,
-  MatInputModule
+  MatInputModule,
+  MatNativeDateModule
 } from '@angular/material';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -48,6 +50,9 @@ import { UpdateUserComponent } from './pages/users/update-user/update-user.compo
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { NewProjectComponent } from './pages/projects/new-project/new-project.component';
 import { UpdateProjectComponent } from './pages/projects/update-project/update-project.component';
+import { SprintsComponent } from './pages/sprints/sprints.component';
+import { NewSprintComponent } from './pages/sprints/new-sprint/new-sprint.component';
+import { UpdateSprintComponent } from './pages/sprints/update-sprint/update-sprint.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +73,10 @@ import { UpdateProjectComponent } from './pages/projects/update-project/update-p
     UpdateUserComponent,
     ProjectsComponent,
     NewProjectComponent,
-    UpdateProjectComponent
+    UpdateProjectComponent,
+    SprintsComponent,
+    NewSprintComponent,
+    UpdateSprintComponent
   ],
   imports: [
     BrowserModule,
@@ -90,9 +98,11 @@ import { UpdateProjectComponent } from './pages/projects/update-project/update-p
     MatSortModule,
     MatSelectModule,
     MatProgressBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     NgxMaskModule.forRoot()
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }, MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

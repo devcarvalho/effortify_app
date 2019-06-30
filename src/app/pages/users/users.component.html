@@ -1,0 +1,24 @@
+<div class="users outlet-wrapper">
+  <app-header title="Usuários"></app-header>
+  <div class="container-fluid px-container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="spinner-wrapper">
+          <mat-progress-bar *ngIf="!showTable" mode="indeterminate">
+          </mat-progress-bar>
+        </div>
+
+        <app-table
+          *ngIf="showTable"
+          actionBtn="Adicionar Usuário"
+          [tableOpts]="tableOpts"
+          [tableData]="tableData"
+          [displayedColumns]="tableColumns"
+          [columnTitles]="tableColumnTitle"
+          (viewItem)="viewUser($event)"
+          (actionClick)="newUser()"
+        ></app-table>
+      </div>
+    </div>
+  </div>
+</div>

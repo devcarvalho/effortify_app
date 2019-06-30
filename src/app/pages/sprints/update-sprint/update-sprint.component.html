@@ -1,0 +1,132 @@
+<div class="sprints outlet-wrapper">
+  <app-header title="Visualizar/Editar Sprint"></app-header>
+  <div class="container-fluid px-container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="spinner-wrapper">
+          <mat-progress-bar *ngIf="loading" mode="indeterminate">
+          </mat-progress-bar>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <app-purple-card
+          title="Editar Sprint"
+          subtitle="Preencha o formulário abaixo para editar a sprint.
+        Campos com (*) são obrigatórios."
+        >
+          <form (submit)="updateSprint($event)">
+            <div class="form-row mb-2 mt-2">
+              <div class="col-md-4">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Nome"
+                    name="name"
+                    [formControl]="name"
+                    type="text"
+                    required
+                  />
+                  <mat-error *ngIf="name.invalid">{{
+                    getErrorMessage('name')
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 pl-2">
+                <mat-form-field>
+                  <mat-label>Projeto</mat-label>
+                  <mat-select name="project" [formControl]="project" required>
+                    <mat-option
+                      *ngFor="let project of projects"
+                      [value]="project._id"
+                    >
+                      {{ project.name }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="project.invalid">{{
+                    getErrorMessage('project')
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 pl-2">
+                <mat-form-field>
+                  <mat-label>Equipe</mat-label>
+                  <mat-select [formControl]="team" multiple>
+                    <mat-option *ngFor="let user of users" [value]="user._id">{{
+                      user.name
+                    }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-row mb-2">
+              <div class="col-md-4">
+                <mat-form-field>
+                  <input
+                    matInput
+                    [matDatepicker]="startPicker"
+                    [formControl]="startDate"
+                    placeholder="Data de Inicio"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="startPicker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #startPicker></mat-datepicker>
+                  <mat-error *ngIf="startDate.invalid">{{
+                    getErrorMessage('startDate')
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 pl-2">
+                <mat-form-field>
+                  <input
+                    matInput
+                    [matDatepicker]="endPicker"
+                    [formControl]="endDate"
+                    [min]="startDate.value"
+                    placeholder="Data Fim"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="endPicker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #endPicker></mat-datepicker>
+                  <mat-error *ngIf="endDate.invalid">{{
+                    getErrorMessage('endDate')
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-row mb-2">
+              <div class="col-md-12">
+                <mat-form-field>
+                  <textarea
+                    matInput
+                    placeholder="Descrição"
+                    [formControl]="description"
+                  ></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row justify-content-end pr-3 mt-3">
+              <button
+                mat-raised-button
+                class="btn btn-default"
+                routerLink="/sprints"
+                type="button"
+              >
+                Cancelar
+              </button>
+              <button mat-raised-button class="btn btn-primary" type="submit">
+                Salvar Alterações
+              </button>
+            </div>
+          </form>
+        </app-purple-card>
+      </div>
+    </div>
+  </div>
+</div>

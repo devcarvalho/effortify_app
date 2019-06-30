@@ -1,0 +1,24 @@
+<div class="sprints outlet-wrapper">
+  <app-header title="Sprints"></app-header>
+  <div class="container-fluid px-container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="spinner-wrapper">
+          <mat-progress-bar *ngIf="!showTable" mode="indeterminate">
+          </mat-progress-bar>
+        </div>
+
+        <app-table
+          *ngIf="showTable"
+          actionBtn="Adicionar Sprint"
+          [tableOpts]="tableOpts"
+          [tableData]="tableData"
+          [displayedColumns]="tableColumns"
+          [columnTitles]="tableColumnTitle"
+          (viewItem)="viewSprint($event)"
+          (actionClick)="newSprint()"
+        ></app-table>
+      </div>
+    </div>
+  </div>
+</div>

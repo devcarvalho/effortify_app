@@ -1,0 +1,204 @@
+<div class="users outlet-wrapper">
+  <app-header title="Visualizar/Editar Usuário"></app-header>
+  <div class="container-fluid px-container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="spinner-wrapper">
+          <mat-progress-bar *ngIf="loading" mode="indeterminate">
+          </mat-progress-bar>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <app-purple-card
+          title="Editar Usuário"
+          subtitle="Preencha o formulário abaixo para editar o usuário.
+        Campos com (*) são obrigatórios."
+        >
+          <form (submit)="updateUser($event)">
+            <div class="form-row mb-2 mt-2">
+              <div class="col-md-6">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Nome"
+                    name="name"
+                    [formControl]="name"
+                    type="text"
+                    required
+                  />
+                  <mat-error *ngIf="name.invalid">{{
+                    getErrorMessage('name')
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 pl-4">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="CPF"
+                    name="cpf"
+                    [formControl]="cpf"
+                    [dropSpecialCharacters]="false"
+                    mask="000.000.000-00"
+                    type="text"
+                    required
+                  />
+                  <mat-error *ngIf="cpf.invalid">{{
+                    getErrorMessage('cpf')
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-row mb-2">
+              <div class="col-md-6">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Email"
+                    name="email"
+                    [formControl]="email"
+                    type="email"
+                    required
+                  />
+                  <mat-error *ngIf="email.invalid">{{
+                    getErrorMessage('email')
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 pl-4">
+                <mat-form-field>
+                  <mat-label>Função</mat-label>
+                  <mat-select name="role" [formControl]="role" required>
+                    <mat-option *ngFor="let role of roles" [value]="role.value">
+                      {{ role.label }}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="role.invalid">{{
+                    getErrorMessage('role')
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-row mb-2">
+              <div class="col-md-6">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Telefone"
+                    name="phone_number"
+                    [formControl]="phoneNumber"
+                    [dropSpecialCharacters]="false"
+                    mask="(00)00000-0000"
+                    type="text"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 pl-4">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Valor Hora"
+                    name="hour_value"
+                    [formControl]="hourValue"
+                    prefix="R$ "
+                    mask="dot_separator.2"
+                    type="text"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-row mb-2">
+              <div class="col-md-6">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Senha"
+                    name="password"
+                    [formControl]="password"
+                    (keyup)="checkPasswords()"
+                    type="password"
+                  />
+                  <mat-error *ngIf="password.invalid">{{
+                    getErrorMessage('password')
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 pl-4">
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Confirme a senha"
+                    name="confirm_password"
+                    [formControl]="confirmPassword"
+                    (keyup)="checkPasswords()"
+                    type="password"
+                  />
+                  <mat-error *ngIf="confirmPassword.invalid">{{
+                    getErrorMessage('confirmPassword')
+                  }}</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row justify-content-end pr-3 mt-3">
+              <button
+                mat-raised-button
+                class="btn btn-default"
+                routerLink="/usuarios"
+                type="button"
+              >
+                Cancelar
+              </button>
+              <button mat-raised-button class="btn btn-primary" type="submit">
+                Salvar Alterações
+              </button>
+            </div>
+          </form>
+        </app-purple-card>
+      </div>
+      <div class="col-md-4">
+        <app-info-panel
+          [displayImg]="avatar.value ? avatar.value : ''"
+          (newImage)="avatar.setValue($event)"
+        >
+          <h4 *ngIf="name.value" class="card-title mt-2">
+            {{ name.value }}
+          </h4>
+          <h6 *ngIf="role.value" class="card-category text-gray">
+            {{
+              role.value === 'qa'
+                ? 'QUALITY ASSURANCE'
+                : role.value === 'front_end_dev'
+                ? 'DESENVOLVEDOR FRONT END'
+                : role.value === 'back_end_dev'
+                ? 'DESENVOLVEDOR BACK END'
+                : role.value === 'full_stack_dev'
+                ? 'DESENVOLVEDOR FULL STACK'
+                : role.value === 'adm'
+                ? 'ADMINISTRADOR'
+                : null
+            }}
+          </h6>
+          <h6 *ngIf="cpf.value" class="card-category text-gray">
+            {{ cpf.value }}
+          </h6>
+          <h6 *ngIf="phoneNumber.value" class="card-category text-gray">
+            {{ phoneNumber.value }}
+          </h6>
+          <h6 *ngIf="email.value" class="card-category text-gray">
+            {{ email.value }}
+          </h6>
+          <button
+            mat-raised-button
+            class="btn btn-danger mt-4"
+            (click)="removeUser()"
+          >
+            Remover Usuário
+          </button>
+        </app-info-panel>
+      </div>
+    </div>
+  </div>
+</div>

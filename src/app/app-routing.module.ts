@@ -19,6 +19,10 @@ import { ProjectsComponent } from './pages/projects/projects.component';
 import { NewProjectComponent } from './pages/projects/new-project/new-project.component';
 import { UpdateProjectComponent } from './pages/projects/update-project/update-project.component';
 
+import { SprintsComponent } from './pages/sprints/sprints.component';
+import { NewSprintComponent } from './pages/sprints/new-sprint/new-sprint.component';
+import { UpdateSprintComponent } from './pages/sprints/update-sprint/update-sprint.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {
@@ -74,6 +78,21 @@ const routes: Routes = [
     path: 'projetos/:id',
     canActivate: [AuthGuard],
     component: UpdateProjectComponent
+  },
+  {
+    path: 'sprints',
+    canActivate: [AuthGuard],
+    component: SprintsComponent
+  },
+  {
+    path: 'sprints/nova',
+    canActivate: [AuthGuard],
+    component: NewSprintComponent
+  },
+  {
+    path: 'sprints/:id',
+    canActivate: [AuthGuard],
+    component: UpdateSprintComponent
   }
   // { path: '**', component: PageNotFoundComponent }
 ];
