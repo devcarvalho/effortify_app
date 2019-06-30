@@ -60,7 +60,6 @@ export class NewSprintComponent implements OnInit {
       this.startDate.invalid ||
       this.endDate.invalid
     ) {
-      console.log(this.endDate);
       return;
     }
 
@@ -74,8 +73,6 @@ export class NewSprintComponent implements OnInit {
       end_date: this.endDate.value,
       description: this.description.value
     };
-
-    console.log('sprint', sprint);
 
     this.sprintsService.addSprint(sprint).subscribe(
       res => {

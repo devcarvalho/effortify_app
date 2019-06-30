@@ -67,8 +67,6 @@ export class UpdateSprintComponent implements OnInit {
         this.endDate.setValue(res.end_date);
         this.team.setValue(res.team);
         this.description.setValue(res.description);
-
-        console.log('team', res.team);
       },
       err => {
         this.loading = false;
@@ -77,7 +75,7 @@ export class UpdateSprintComponent implements OnInit {
     );
   }
 
-  addSprint(e: any) {
+  updateSprint(e: any) {
     e.preventDefault();
     this.name.markAsTouched();
     this.project.markAsTouched();
@@ -89,7 +87,6 @@ export class UpdateSprintComponent implements OnInit {
       this.startDate.invalid ||
       this.endDate.invalid
     ) {
-      console.log(this.endDate);
       return;
     }
 
@@ -104,13 +101,11 @@ export class UpdateSprintComponent implements OnInit {
       description: this.description.value
     };
 
-    console.log('sprint', sprint);
-
-    this.sprintsService.addSprint(sprint).subscribe(
+    this.sprintsService.updateSprint(sprint, this.sprintId).subscribe(
       res => {
         this.loading = false;
         swalWithBootstrapButtons
-          .fire('Registrada!', 'Nova Sprint adicionada com sucesso!', 'success')
+          .fire('Atualizada!', 'Sprint atualizada com sucesso!', 'success')
           .then(() => {
             this.router.navigate(['sprints']);
           });
@@ -124,6 +119,41 @@ export class UpdateSprintComponent implements OnInit {
         );
       }
     );
+  }
+
+  removeSprint() {
+    swalWithBootstrapButtons
+      .fire({
+        title: 'Tem certeza?',
+        text: 'Esta ação não poderá ser desfeita.',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Continuar',
+        cancelButtonText: 'Cancelar'
+      })
+      .then(res => {
+        if (res.value) {
+          this.loading = true;
+          this.sprintsService.removeSprint(this.sprintId).subscribe(
+            () => {
+              this.loading = false;
+              swalWithBootstrapButtons
+                .fire(
+                  'Removida!',
+                  'A sprint foi removida com sucesso!',
+                  'success'
+                )
+                .then(() => {
+                  this.router.navigate(['sprints']);
+                });
+            },
+            () => {
+              this.loading = false;
+              this.showErrAlert();
+            }
+          );
+        }
+      });
   }
 
   getErrorMessage(field: string) {

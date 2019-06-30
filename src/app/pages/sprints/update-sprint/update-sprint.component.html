@@ -111,18 +111,30 @@
               </div>
             </div>
 
-            <div class="row justify-content-end pr-3 mt-3">
-              <button
-                mat-raised-button
-                class="btn btn-default"
-                routerLink="/sprints"
-                type="button"
-              >
-                Cancelar
-              </button>
-              <button mat-raised-button class="btn btn-primary" type="submit">
-                Salvar Alterações
-              </button>
+            <div class="row pr-3 mt-3">
+              <div class="col-md-6 p-0">
+                <button
+                  mat-raised-button
+                  class="btn btn-danger ml-3"
+                  type="button"
+                  (click)="removeSprint()"
+                >
+                  Remover Sprint
+                </button>
+              </div>
+              <div class="col-md-6 p-0 d-flex justify-content-end">
+                <button
+                  mat-raised-button
+                  class="btn btn-default"
+                  routerLink="/sprints"
+                  type="button"
+                >
+                  Cancelar
+                </button>
+                <button mat-raised-button class="btn btn-primary" type="submit">
+                  Salvar Alterações
+                </button>
+              </div>
             </div>
           </form>
         </app-purple-card>
